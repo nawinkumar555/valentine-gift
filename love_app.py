@@ -30,8 +30,11 @@ if password.lower() == "roxy" or password.lower() == "thango":
     q3 = st.number_input("How many days had we been talking at our 500-day mark?", step=1)
 
     # Check Answers (October 13, August 2, 793)
+  # Check Answers (October 14, 2023 | August 2, 2024 | 854 days)
     if st.button("Submit Data for Validation"):
-        if q1.month == 10 and q1.day == 13 and q2.month == 8 and q2.day == 2 and q3 == 793:
+        if q1.year == 2023 and q1.month == 10 and q1.day == 14 and \
+           q2.year == 2024 and q2.month == 8 and q2.day == 2 and \
+           q3 == 854:
             st.balloons()
             st.write("### ✅ Model Accuracy: 100%!")
             time.sleep(1)
@@ -53,4 +56,5 @@ if password.lower() == "roxy" or password.lower() == "thango":
 
 else:
     if password:
+
         st.warning("Incorrect Key. Access Denied.")

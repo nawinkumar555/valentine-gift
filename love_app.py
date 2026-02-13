@@ -81,17 +81,20 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             except:
                 st.error("Please ensure 'reward.jpg' is uploaded to your GitHub folder.")
             
-            st.write(f"""
+         st.write(f"""
             ### A Message from Maddy:
             "Kaviya, you aren't just a data point in my life; you are the whole system. 
             From the 854 days we've shared since our friendship began on October 14th, 
             to our August 2nd milestone, every moment is a memory I've saved in my heart's 
             permanent storage. Happy Valentine's Day, Roxy!"
             """)
+
+            # The Canva Gift Link
+            st.link_button("🎁 Open Your Final Gift", "https://roxymaddy.my.canva.site/")
+            
         else:
             st.error("Error: Memory mismatch. Check the dates or the day count and try again!")
 
 else:
     if password:
         st.warning("Incorrect Key. Access Denied.")
-

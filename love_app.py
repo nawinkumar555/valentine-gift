@@ -5,7 +5,7 @@ import time
 # Page Config
 st.set_page_config(page_title="Maddy & Roxy: AI Model", page_icon="💖", layout="wide")
 
-# 1. Optimized Background Video Function
+# 1. Optimized Background Video Function (Full Video Visible)
 def add_bg_video(video_file):
     try:
         with open(video_file, "rb") as f:
@@ -21,20 +21,23 @@ def add_bg_video(video_file):
                 width: 100vw; 
                 height: 100vh;
                 z-index: -1;
-                object-fit: cover; /* Fixes ratio and visibility */
+                object-fit: contain; /* This ensures the WHOLE video is visible */
+                background-color: black; /* Fills the "cut" areas with black */
             }}
             .stApp {{
-                background: rgba(0, 0, 0, 0.3); /* Darker tint to make video pop */
+                background: rgba(0, 0, 0, 0.4); 
             }}
             .main .block-container {{
-                background-color: rgba(255, 255, 255, 0.6); /* Transparent readable box */
+                background-color: rgba(255, 255, 255, 0.7); 
                 padding: 3rem;
                 border-radius: 20px;
                 margin-top: 5vh;
-                max-width: 700px;
+                max-width: 650px;
+                margin-left: auto;
+                margin-right: auto;
             }}
             h1, h3, p, label {{
-                color: #2c3e50 !important; /* Darker text for better contrast */
+                color: #1a1a1a !important; 
                 font-weight: bold;
             }}
             </style>
@@ -50,7 +53,7 @@ def add_bg_video(video_file):
 # Execute Video Background
 add_bg_video('bg_video.mp4')
 
-# 2. Add Background Music (Flute_Flow.mp3)
+# 2. Add Background Music
 try:
     audio_file = open('Flute_Flow.mp3', 'rb')
     audio_bytes = audio_file.read()
@@ -69,16 +72,14 @@ password = st.text_input("Enter Access Key (Secret Nickname):", type="password")
 if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
     st.success("Access Granted. Initializing Relationship Analytics...")
     
-    # Quiz Section - Using your specific milestones
+    # Quiz Section (Answers: Oct 14, 2023 | Aug 2, 2024 | 854 days)
     st.divider()
     st.subheader("📊 Training the Model: Memory Check")
     
-    # Oct 14, 2023 | Aug 2, 2024 | 854 days
     q1 = st.date_input("When did our friendship officially begin?")
     q2 = st.date_input("When is our official Anniversary?")
     q3 = st.number_input("How many days have we been together?", step=1)
 
-    # Validation Logic
     if st.button("Submit Data for Validation"):
         if q1.year == 2023 and q1.month == 10 and q1.day == 14 and \
            q2.year == 2024 and q2.month == 8 and q2.day == 2 and \
@@ -88,7 +89,6 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             st.write("### ✅ Model Accuracy: 100%!")
             time.sleep(1)
             
-            # The Final Reveal
             st.divider()
             st.subheader("❤️ Result: The Infinite Loop")
             
@@ -105,13 +105,11 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             permanent storage. Happy Valentine's Day, Roxy!"
             """)
 
-            # Your Canva Gift Link
             st.link_button("🎁 Open Your Final Gift", "https://roxymaddy.my.canva.site/")
             
         else:
-            st.error("Error: Memory mismatch. Check the dates or the day count and try again!")
+            st.error("Error: Memory mismatch. Try again, Roxy!")
 
 else:
     if password:
         st.warning("Incorrect Key. Access Denied.")
-

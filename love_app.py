@@ -3,9 +3,9 @@ import base64
 import time
 
 # Page Config
-st.set_page_config(page_title="Maddy & Roxy: AI Model", page_icon="💖")
+st.set_page_config(page_title="Maddy & Roxy: AI Model", page_icon="💖", layout="wide")
 
-# 1. Background Video Function (Muted for Autoplay Compatibility)
+# 1. Optimized Background Video Function
 def add_bg_video(video_file):
     try:
         with open(video_file, "rb") as f:
@@ -16,34 +16,41 @@ def add_bg_video(video_file):
             <style>
             #myVideo {{
                 position: fixed;
-                right: 0;
-                bottom: 0;
-                min-width: 100%; 
-                min-height: 100%;
+                top: 0;
+                left: 0;
+                width: 100vw; 
+                height: 100vh;
                 z-index: -1;
-                object-fit: cover;
+                object-fit: cover; /* Fixes ratio and visibility */
             }}
             .stApp {{
-                background: rgba(255, 245, 245, 0.75); /* Soft overlay so text stays readable */
+                background: rgba(0, 0, 0, 0.3); /* Darker tint to make video pop */
             }}
             .main .block-container {{
-                padding-top: 2rem;
+                background-color: rgba(255, 255, 255, 0.6); /* Transparent readable box */
+                padding: 3rem;
+                border-radius: 20px;
+                margin-top: 5vh;
+                max-width: 700px;
             }}
-            h1 {{ color: #ff4b4b; font-family: 'Helvetica'; text-shadow: 1px 1px 2px #fff; }}
+            h1, h3, p, label {{
+                color: #2c3e50 !important; /* Darker text for better contrast */
+                font-weight: bold;
+            }}
             </style>
-            <video autoplay muted loop id="myVideo">
+            <video autoplay muted loop playsinline id="myVideo">
                 <source src="data:video/mp4;base64,{b64}" type="video/mp4">
             </video>
             """,
             unsafe_allow_html=True
         )
     except:
-        st.warning("Upload 'bg_video.mp4' to your GitHub repository to see the video background!")
+        st.warning("Upload 'bg_video.mp4' to GitHub to see the video background!")
 
 # Execute Video Background
 add_bg_video('bg_video.mp4')
 
-# 2. Add Background Music (The Soundtrack)
+# 2. Add Background Music (Flute_Flow.mp3)
 try:
     audio_file = open('Flute_Flow.mp3', 'rb')
     audio_bytes = audio_file.read()
@@ -62,11 +69,11 @@ password = st.text_input("Enter Access Key (Secret Nickname):", type="password")
 if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
     st.success("Access Granted. Initializing Relationship Analytics...")
     
-    # Quiz Section
+    # Quiz Section - Using your specific milestones
     st.divider()
     st.subheader("📊 Training the Model: Memory Check")
     
-    # Answers based on your milestones: Oct 14, 2023 | Aug 2, 2024 | 854 days
+    # Oct 14, 2023 | Aug 2, 2024 | 854 days
     q1 = st.date_input("When did our friendship officially begin?")
     q2 = st.date_input("When is our official Anniversary?")
     q3 = st.number_input("How many days have we been together?", step=1)
@@ -98,7 +105,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             permanent storage. Happy Valentine's Day, Roxy!"
             """)
 
-            # The Canva Gift Link
+            # Your Canva Gift Link
             st.link_button("🎁 Open Your Final Gift", "https://roxymaddy.my.canva.site/")
             
         else:

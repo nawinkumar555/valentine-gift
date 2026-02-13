@@ -32,11 +32,11 @@ def add_static_bg(image_file):
                 max-width: 600px;
                 margin-left: auto;
                 margin-right: auto;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             }}
             h1, h3, p, label {{ color: #1a1a1a !important; font-weight: bold; }}
             
             /* CSS to make BOTH buttons have White Text */
-            /* Targets the Validation Button */
             div.stButton > button {{
                 color: white !important;
                 background-color: #ff4b4b !important;
@@ -46,7 +46,6 @@ def add_static_bg(image_file):
                 border: none;
             }}
             
-            /* Targets the 'Open Your Final Gift' Link Button */
             div.stLinkButton > a {{
                 color: white !important;
                 background-color: #ff4b4b !important;
@@ -61,7 +60,6 @@ def add_static_bg(image_file):
                 border: none;
             }}
 
-            /* Hover effects for a premium feel */
             div.stButton > button:hover, div.stLinkButton > a:hover {{
                 background-color: #e03a3a !important;
                 color: white !important;
@@ -71,7 +69,7 @@ def add_static_bg(image_file):
             unsafe_allow_html=True
         )
     except:
-        st.warning("Upload 'bg.jpg' to GitHub!")
+        st.warning("Initial background 'bg.jpg' not found on GitHub.")
 
 # Video Reveal Function (August 2, 2024 Anniversary Reveal)
 def add_reveal_video(video_file):
@@ -88,7 +86,7 @@ def add_reveal_video(video_file):
                 height: 100vh;
                 z-index: -2;
                 object-fit: cover;
-                opacity: 0.9;
+                opacity: 0.95;
             }}
             .stApp {{ background: transparent !important; }}
             </style>
@@ -99,20 +97,23 @@ def add_reveal_video(video_file):
             unsafe_allow_html=True
         )
     except:
-        st.error("Video failed to load!")
+        st.error("Video 'bg_video.mp4' failed to load. Ensure it is uploaded to GitHub!")
 
 # Start with the static image
 add_static_bg('bg.jpg')
 
 # --- APP CONTENT ---
 st.title("🔐 Maddy's Love Intelligence Model")
+st.write("System Status: **Waiting for Roxy's Input...**")
+
+# Access Gate (Nicknames: Roxy, Thango, Chello, Kutti Ponnu)
 password = st.text_input("Enter Access Key (Secret Nickname):", type="password")
 
 if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
-    st.success("Access Granted.")
+    st.success("Access Granted. Initializing Relationship Analytics...")
     st.subheader("📊 Training the Model: Memory Check")
     
-    # Oct 14, 2023 | Aug 2, 2024 | 854 days
+    # Quiz Answers based on your milestones: Oct 14, 2023 | Aug 2, 2024 | 854 days
     q1 = st.date_input("When did our friendship officially begin?") 
     q2 = st.date_input("When is our official Anniversary?") 
     q3 = st.number_input("How many days have we been together?", step=1) 
@@ -122,37 +123,42 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
            q2.year == 2024 and q2.month == 8 and q2.day == 2 and \
            q3 == 854:
             
-            # TRIGGER VIDEO AND AUDIO
+            # 1. TRIGGER VIDEO AND AUDIO REVEAL
             add_reveal_video('bg_video.mp4')
-            
             try:
                 audio_bytes = open('Flute_Flow.mp3', 'rb').read()
                 st.audio(audio_bytes, format='audio/mp3', autoplay=True)
             except:
-                pass
+                st.info("Upload 'Flute_Flow.mp3' for the soundtrack!")
 
             st.balloons()
             st.write("### ✅ Model Accuracy: 100%!")
             time.sleep(1) 
             
-            # INFINITY LOOP CONTENT
+            # 2. INFINITY LOOP CONTENT REVEAL
             st.divider()
             st.subheader("❤️ Result: The Infinite Loop")
             
             try:
-                st.image("reward.jpg", caption="Maddy & Roxy: 100% Match")
+                st.image("reward.jpg", caption="Maddy & Roxy: 100% Match Probability")
             except:
-                st.error("Upload 'reward.jpg'!")
+                st.error("Please ensure 'reward.jpg' is uploaded to your GitHub folder.")
             
-            st.write(f"""
+            # 3. PERSONALIZED RED/PINK MESSAGE
+            st.markdown(f"""
             ### A Message from Maddy:
+            <p style='color: #ff4b4b; font-size: 20px; font-weight: bold; text-shadow: 1px 1px 2px #ffffff; line-height: 1.5;'>
             "Kaviya, you aren't just a data point in my life; you are the whole system. 
             From the 854 days we've shared since October 14, 2023, every moment 
             is a memory I've saved in my heart's permanent storage. Happy Valentine's Day, Roxy!"
-            """)
+            </p>
+            """, unsafe_allow_html=True)
+
+            # 4. FINAL GIFT LINK
             st.link_button("🎁 Open Your Final Gift", "https://roxymaddy.my.canva.site/")
+            
         else:
-            st.error("Error: Memory mismatch. Try again, Roxy!")
+            st.error("Error: Memory mismatch. Check the dates or the day count and try again, Roxy!")
 
 else:
     if password:

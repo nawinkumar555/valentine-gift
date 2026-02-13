@@ -7,33 +7,34 @@ st.set_page_config(page_title="Maddy & Roxy: AI Model", page_icon="💖")
 
 # 1. Function to add Background Image
 def add_bg(image_file):
-    with open(image_file, "rb") as image_file:
-        encoded_string = base64.b64encode(image_file.read())
-    st.markdown(
-    f"""
-    <style>
-    .stApp {{
-        background-image: url("data:image/png;base64,{encoded_string.decode()}");
-        background-size: cover;
-        background-position: center;
-    }}
-    /* Making text readable over background */
-    .main .block-container {{
-        background-color: rgba(255, 245, 245, 0.8);
-        padding: 3rem;
-        border-radius: 20px;
-    }}
-    h1 {{ color: #ff4b4b; font-family: 'Helvetica'; }}
-    </style>
-    """,
-    unsafe_allow_html=True
-    )
+    try:
+        with open(image_file, "rb") as image_file:
+            encoded_string = base64.b64encode(image_file.read())
+        st.markdown(
+        f"""
+        <style>
+        .stApp {{
+            background-image: url("data:image/png;base64,{encoded_string.decode()}");
+            background-size: cover;
+            background-position: center;
+        }}
+        /* Making text readable over background */
+        .main .block-container {{
+            background-color: rgba(255, 245, 245, 0.85);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }}
+        h1 {{ color: #ff4b4b; font-family: 'Helvetica'; }}
+        </style>
+        """,
+        unsafe_allow_html=True
+        )
+    except:
+        st.warning("Upload 'bg.jpg' to GitHub to see the custom background!")
 
-# Use your background file
-try:
-    add_bg('bg.jpg')
-except:
-    st.warning("Upload 'bg.jpg' to GitHub to see the custom background!")
+# Execute Background Function
+add_bg('bg.jpg')
 
 # 2. Add Background Music
 try:
@@ -41,14 +42,14 @@ try:
     audio_bytes = audio_file.read()
     st.audio(audio_bytes, format='audio/mp3', autoplay=True, loop=True)
 except:
-    st.info("Upload 'music.mp3' to GitHub to play your song!")
+    st.info("Upload 'Flute_Flow.mp3' to GitHub to play your song!")
 
 # --- APP CONTENT ---
 
 st.title("🔐 Maddy's Love Intelligence Model")
 st.write("System Status: **Waiting for Roxy's Input...**")
 
-# Access Gate
+# Access Gate (Nicknames: Roxy, Thango, Chello, Kutti Ponnu)
 password = st.text_input("Enter Access Key (Secret Nickname):", type="password")
 
 if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
@@ -81,7 +82,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             except:
                 st.error("Please ensure 'reward.jpg' is uploaded to your GitHub folder.")
             
-         st.write(f"""
+            st.write(f"""
             ### A Message from Maddy:
             "Kaviya, you aren't just a data point in my life; you are the whole system. 
             From the 854 days we've shared since our friendship began on October 14th, 

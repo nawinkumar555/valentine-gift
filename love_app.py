@@ -35,19 +35,36 @@ def add_static_bg(image_file):
             }}
             h1, h3, p, label {{ color: #1a1a1a !important; font-weight: bold; }}
             
-            /* CSS to make Button Text White */
+            /* CSS to make BOTH buttons have White Text */
+            /* Targets the Validation Button */
             div.stButton > button {{
                 color: white !important;
-                background-color: #ff4b4b; /* Matching the red theme */
+                background-color: #ff4b4b !important;
                 border-radius: 10px;
                 font-weight: bold;
+                width: 100%;
+                border: none;
             }}
             
-            /* CSS for the Open Your Gift link button */
-            a[href^="https://roxymaddy.my.canva.site/"] {{
+            /* Targets the 'Open Your Final Gift' Link Button */
+            div.stLinkButton > a {{
                 color: white !important;
-                text-decoration: none;
+                background-color: #ff4b4b !important;
+                border-radius: 10px;
                 font-weight: bold;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                padding: 10px;
+                border: none;
+            }}
+
+            /* Hover effects for a premium feel */
+            div.stButton > button:hover, div.stLinkButton > a:hover {{
+                background-color: #e03a3a !important;
+                color: white !important;
             }}
             </style>
             """,
@@ -91,7 +108,6 @@ add_static_bg('bg.jpg')
 st.title("🔐 Maddy's Love Intelligence Model")
 password = st.text_input("Enter Access Key (Secret Nickname):", type="password")
 
-# Validation logic for Roxy/Thango
 if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
     st.success("Access Granted.")
     st.subheader("📊 Training the Model: Memory Check")
@@ -128,7 +144,6 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             except:
                 st.error("Upload 'reward.jpg'!")
             
-            # Personalized message for Kaviya
             st.write(f"""
             ### A Message from Maddy:
             "Kaviya, you aren't just a data point in my life; you are the whole system. 

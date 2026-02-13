@@ -11,7 +11,7 @@ def get_base64(file_path):
         data = f.read()
     return base64.b64encode(data).decode()
 
-# Initial Static Background (October 14, 2023 Friendship Milestone)
+# Initial Static Background (October 14, 2023 Milestone)
 def add_static_bg(image_file):
     try:
         img_b64 = get_base64(image_file)
@@ -34,6 +34,21 @@ def add_static_bg(image_file):
                 margin-right: auto;
             }}
             h1, h3, p, label {{ color: #1a1a1a !important; font-weight: bold; }}
+            
+            /* CSS to make Button Text White */
+            div.stButton > button {{
+                color: white !important;
+                background-color: #ff4b4b; /* Matching the red theme */
+                border-radius: 10px;
+                font-weight: bold;
+            }}
+            
+            /* CSS for the Open Your Gift link button */
+            a[href^="https://roxymaddy.my.canva.site/"] {{
+                color: white !important;
+                text-decoration: none;
+                font-weight: bold;
+            }}
             </style>
             """,
             unsafe_allow_html=True
@@ -41,7 +56,7 @@ def add_static_bg(image_file):
     except:
         st.warning("Upload 'bg.jpg' to GitHub!")
 
-# Video Reveal Function (For August 2, 2024 Anniversary Reveal)
+# Video Reveal Function (August 2, 2024 Anniversary Reveal)
 def add_reveal_video(video_file):
     try:
         vid_b64 = get_base64(video_file)
@@ -58,7 +73,6 @@ def add_reveal_video(video_file):
                 object-fit: cover;
                 opacity: 0.9;
             }}
-            /* Make the app container more transparent so the video pops */
             .stApp {{ background: transparent !important; }}
             </style>
             <video autoplay muted loop playsinline id="revealVideo">
@@ -68,7 +82,7 @@ def add_reveal_video(video_file):
             unsafe_allow_html=True
         )
     except:
-        st.error("Video failed to load. Check file name!")
+        st.error("Video failed to load!")
 
 # Start with the static image
 add_static_bg('bg.jpg')
@@ -92,7 +106,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
            q2.year == 2024 and q2.month == 8 and q2.day == 2 and \
            q3 == 854:
             
-            # 1. TRIGGER VIDEO AND AUDIO
+            # TRIGGER VIDEO AND AUDIO
             add_reveal_video('bg_video.mp4')
             
             try:
@@ -105,7 +119,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             st.write("### ✅ Model Accuracy: 100%!")
             time.sleep(1) 
             
-            # 2. THEN SHOW INFINITY LOOP CONTENT
+            # INFINITY LOOP CONTENT
             st.divider()
             st.subheader("❤️ Result: The Infinite Loop")
             
@@ -114,6 +128,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             except:
                 st.error("Upload 'reward.jpg'!")
             
+            # Personalized message for Kaviya
             st.write(f"""
             ### A Message from Maddy:
             "Kaviya, you aren't just a data point in my life; you are the whole system. 
@@ -123,3 +138,7 @@ if password.lower() in ["roxy", "thango", "chello", "kutti ponnu"]:
             st.link_button("🎁 Open Your Final Gift", "https://roxymaddy.my.canva.site/")
         else:
             st.error("Error: Memory mismatch. Try again, Roxy!")
+
+else:
+    if password:
+        st.warning("Incorrect Key. Access Denied.")
